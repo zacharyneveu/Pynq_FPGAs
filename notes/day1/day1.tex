@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+\newacro{PL}{programmable logic}
+\newacro{PS}{processing system}
+\newacro{CLB}{configurable logic block}
+\newacro{IOB}{input/output block}
+\newacro{PSM}{programmable switch  matrix}
+\newacro{PIP}{programmable interconnect point}
+\newacro{LUT}{lookup table}
+\newacro{MUX}{multiplexor}
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Day 1: Intro }
+
+\begin{document}
+\maketitle
+
+\subsection*{Organization}
+\begin{itemize}
+	\item Based on PYNQ framework: Python code in Jupyter, FPGA code in Python subset
+	\item Blackboard has all kinds of fun extras, discussion boards etc.
+	\item Using Vivado 2018.3 - version important, will error out if different
+	\item 3 quizzes and a late midterm (quasi final)
+	\item Second half of semester largely project based
+	\item No final exam, slot will be used for project presentations
+\end{itemize}
+
+\subsection*{Project}
+\begin{itemize}
+	\item Application w/ hw and sw on Pynq.
+	\item Compare HW speedup
+	\item Try different interface types/memory allocations
+	\item Topics can vary, ML, CV, cryptography, signal processing etc.
+\end{itemize}
+
+\subsection*{Topics}
+\begin{itemize}
+	\item What is an FPGA?
+	\item Programming
+	\item FPGA overlays
+	\item Architecture
+	\item Computer Arithmetic
+	\item All of this subject to change a bit over the course
+\end{itemize}
+
+\subsection*{What's on an FPGA?}
+\begin{itemize}
+	\item Fabric - general purpose logic gates
+	\item Micro blaze - soft-core processor
+	\item Zynq: true hard-core processor, AXI interface to a bunch of \ac{PL}
+	\item Zynq \ac{PS}: ARM A9 - 10-12 years old, but still widely used
+	\item Using the Pynq Z2 for this class
+\end{itemize}
+
+\subsection*{Pynq}
+\begin{itemize}
+	\item Pynq written in Jupyter, uses IPython kernel
+	\item Write hardware overlays and send to fabric. Call from Python.
+	\item Overlays based on Pynq IP
+	\item Overlays provide a good interface for software people to use custom hardware IP
+\end{itemize}
+
+\subsection*{What's on an FPGA p2}
+\begin{itemize}
+	\item \acp{CLB}
+	\item \ac{IOB}
+	\item \ac{PSM}
+	\item \ac{PIP} - memory can control the interconnect - what connects to what?
+	\item Everything based on memory
+	\item Logic based on \acp{LUT}
+	\item Many \acp{MUX} to decide what goes down wire
+	\item \ac{LUT}: $2^{k}$ RAM cells for $k$ inputs, with a $2^{k} \to 1$ \ac{MUX} to choose which output to select
+	\item \acp{MUX} implemented as tree of $2\to 1$ \acp{MUX}
+	\item Memory values (truth table) chosen at compile time, \ac{MUX} path chosen by inputs
+	\item 6 input \acp{LUT} are what's on the ZYNQ
+	\item Each \ac{CLB} has 2 \acp{LUT} and 2 flip flops, muxed so you can use any combination of these
+\end{itemize}
+\end{document}
