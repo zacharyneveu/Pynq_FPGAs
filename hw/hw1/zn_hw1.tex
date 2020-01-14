@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%https://www.linkedin.com/in/zachary-neveu	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\usepackage{booktabs}
+
+\author{Zach Neveu}
+\title{ Homework 1 }
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item Problem 1
+\begin{minted}{Python}
+def divide_by_three(integerlist):
+  """
+  This function outputs a list where, if the integer on
+  the input list is divisible by three, the corresponding
+  output is 1 else the output is 0
+  """
+  return [not integerlist[i]%3 == 0 for i in range(len(integerlist))]
+\end{minted}
+
+	\item Problem 2: full adder
+	\begin{table}[htpb]
+		\centering
+		\caption{Truth table of full adder}
+		\label{tab:truth_table}
+		\begin{tabular}{lllll}
+		\toprule
+		A & B & $C_{in}$ & Sum & Carry \\
+		\midrule
+		0 & 0 & 0 & 0 & 0 \\
+		\midrule
+		0 & 0 & 1 & 1 & 0 \\
+		\midrule
+		0 & 1 & 0 & 1 & 0 \\
+		\midrule
+		0 & 1 & 1 & 0 & 1 \\
+		\midrule
+		1 & 0 & 0 & 1 & 0 \\
+		\midrule
+		1 & 0 & 1 & 0 & 1 \\
+		\midrule
+		1 & 1 & 0 & 0 & 1 \\
+		\midrule
+		1 & 1 & 1 & 1 & 1 \\
+		\bottomrule	
+		\end{tabular}
+	\end{table}
+
+\end{enumerate}
+\end{document}
