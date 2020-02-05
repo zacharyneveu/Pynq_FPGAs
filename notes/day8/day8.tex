@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+\newacro{BLE}{basic logic element}
+\newacro{CLB}{configurable logic block}
+\newacro{LUT}{lookup table}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Day 8: What's on an FPGA? }
+
+\begin{document}
+\maketitle
+\subsection*{ \acp{ble}}
+\begin{itemize}
+	\item Use multiplexors to select output of function
+\end{itemize}
+
+\subsection*{Interconnect}
+\begin{itemize}
+	\item This was the real breakthrough for FPGAs
+	\item "programmable wires" - choose which spots connect
+	\item Each connection has a cost - need a combination of connected points and unconnected points
+	\item Some wires skip some junctions to alleviate bottlenecks
+	\item Interconnect takes more than half the chip
+\end{itemize}
+
+\subsection*{Specialized Hardware}
+\begin{itemize}
+	\item FPGA contains specialized blocks for common tasks
+	\item Hardware Accelerators
+	\begin{itemize}
+		\item Adders - speed up carry chain because exceptionally slow in CLBs
+		\item Block RAM - all in one place, not distributed
+		\item DSP48E1s - multiply/add combinations for DSP
+		\item Networking - ethernet, PCIE, etc.
+		\item 
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Distributed RAM}
+\begin{itemize}
+	\item \ac{CLB} \acp{LUT} cab be used for distributed RAM
+\end{itemize}
+
+\subsection*{IO Blocks}
+\begin{itemize}
+	\item Flip flops in \ac{CLB} can access outside world with a little analog hardware
+\end{itemize}
+
+\end{document}

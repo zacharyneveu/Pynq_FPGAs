@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{def} \PYG{n+nf}{divide\PYGZus{}by\PYGZus{}three}\PYG{p}{(}\PYG{n}{integerlist}\PYG{p}{):}
-  \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{  This function outputs a list where, if the integer on}
-\PYG{l+s+sd}{  the input list is divisible by three, the corresponding}
-\PYG{l+s+sd}{  output is 1 else the output is 0}
-\PYG{l+s+sd}{  \PYGZdq{}\PYGZdq{}\PYGZdq{}}
-  \PYG{k}{return} \PYG{p}{[}\PYG{o+ow}{not} \PYG{n}{integerlist}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{3} \PYG{o}{==} \PYG{l+m+mi}{0} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{integerlist}\PYG{p}{))]}
-\end{Verbatim}

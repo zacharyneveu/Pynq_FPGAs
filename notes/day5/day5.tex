@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Day 5: Busses }
+
+\begin{document}
+\maketitle
+
+\subsection*{AXI}
+\begin{itemize}
+	\item Advanced eXtensible Interface
+	\item 3 interface types: AXI-lite, AXI, and AXI-stream
+	\item Master/Slave, master can read or write
+	\item AXI/AXI-lite - memory mapped
+	\item AXI-stream - highest throughput, no memory mapping
+	\item Lite/normal - data valid when both valid and ready signals are high
+	\item Stream - extra signal \texttt{tlast} goes high when last data comes through
+\end{itemize}
+
+\subsection*{AXI Lite}
+\begin{itemize}
+	\item Use for small amounts of data
+	\item Sends address/control per piece of data
+	\item Small footprint, but easily data bound performance
+\end{itemize}
+
+\subsection*{AXI-4}
+\begin{itemize}
+	\item ``Full AXI" or memory mapped
+	\item Single address, up to 256 different data items
+	\item Data width is a parameter
+	\item Larger footprint but more performance than AXI lite
+\end{itemize}
+
+\subsection*{AXI Streaming}
+\begin{itemize}
+	\item No address, no read/write
+	\item Master always sending
+	\item Unlimited burst length compared to axi4 (256) and axi-lite (no bursting)
+\end{itemize}
+
+\end{document}

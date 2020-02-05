@@ -46,7 +46,7 @@ def divide_by_three(integerlist):
   the input list is divisible by three, the corresponding
   output is 1 else the output is 0
   """
-  return [not integerlist[i]%3 == 0 for i in range(len(integerlist))]
+  return [integerlist[i]%3 == 0 for i in range(len(integerlist))]
 \end{minted}
 
 	\item Problem 2: full adder
@@ -56,7 +56,7 @@ def divide_by_three(integerlist):
 		\label{tab:truth_table}
 		\begin{tabular}{lllll}
 		\toprule
-		A & B & $C_{in}$ & Sum & Carry \\
+		Input 0 & Input 1 & $C_{in}$ & Sum & Carry \\
 		\midrule
 		0 & 0 & 0 & 0 & 0 \\
 		\midrule
@@ -77,5 +77,79 @@ def divide_by_three(integerlist):
 		\end{tabular}
 	\end{table}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{full_adder}
+	\caption{Full Adder on Simplified Logic Slices}
+	\label{fig:full_adder}
+\end{figure}
+
+	\item Problem 3: "101" Detector
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{101_sm}
+		\caption{State machine for "101" detector}
+		\label{fig:101_sm}
+	\end{figure}
+
+	\begin{table}[h]
+		\centering
+		\caption{States to binary for "101" recognizer}
+		\label{tab:label}
+		\begin{tabular}{ll}
+		State & Binary Representation \\
+		\toprule
+		A & "00" \\
+		\midrule
+		B & "01" \\
+		\midrule
+		C & "10" \\
+		\botomrule
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[h]
+		\centering
+		\caption{Truth Table for State and Output of "101" detector}
+		\label{tab:label}
+		\begin{tabular}{llll|lll}
+		Q & A & Q_0 & Q_1 & Q_0^* & Q_1^* & Output \\
+		\toprule
+		A & 0 & 0 & 0 & 0 & 0 & 0 \\
+		\midrule
+		B & 0 & 0 & 1 & 1 & 0 & 0 \\
+		\midrule
+		C & 0 & 1 & 0 & 0 & 0 & 0 \\
+		\midrule
+		n/a & 0 & 1 & 1 & x & x & x \\
+		\midrule
+		A & 1 & 0 & 0 & 0 & 1 & 0 \\
+		\midrule
+		B & 1 & 0 & 1 & 0 & 1 & 0 \\
+		\midrule
+		C & 1 & 1 & 0 & 0 & 1 & 1 \\
+		\midrule
+		n/a & 1 & 1 & 1 & x & x & x \\
+		\end{tabular}
+	\end{table}
+
+	\begin{figure}[h]
+		\begin{equation}
+		\begin{align*}
+			Q_0^{*} = \overline{x} \land \overline{Q_0} \\
+			Q_1^{*} = x \\
+			Output = x \land Q_0
+	   .\end{align*}
+		\end{equation}
+		\caption{Equations for State and Output of "101" detector}
+		\label{fig:}
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{101_slices.png}
+		\caption{"101" recognizer implemented on simplified logic slices}
+		\label{fig:101_slices-png}
+	\end{figure}
 \end{enumerate}
 \end{document}
