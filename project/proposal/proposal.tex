@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+\input{glossary.tex}
+
+%drafty stuff
+\usepackage{todonotes}
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{  }
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This project will implement \ac{LMS} and \ac{RLS} adaptive filters to perform the task of adaptive noise cancellation for a real-time audio input on a Pynq development board. The goal of this work is to determine performance differences between using the \ac{PL} and \ac{PS} for adaptive filtering, and to find a combination of resources and number representation which produces an efficient implementation for large size filters. To compare performance, end-to-end latency and throughput are determined for each implementation and compared.
+\end{abstract}
+
+\subsection*{Advice from Informal Proposal}
+Good project.  What will your sources of input data be?  Can you use any of the interfaces on the PYNQ board to stream data in?
+
+For \ac{LMS} and \ac{RLS} you need to be careful about data representation.  Floating point is expensive to implement in FPGA hardware.
+
+\section{Introduction}%
+\label{sec:system}
+Speech communication via telephone, VOIP, and other technologies has become one of the primary ways that people interact. The presence of external noise can have a greatly detrimental effect on the intelligibility and quality of transmitted speech. Unfortunately, it is generally not possible to remove this noise through purely acoustic means, therefore algorithms are needed to reduce the amount of noise present. If the noise is known and stationary (i.e. Gaussian white noise), it can be removed using a simple Wiener filter \cite{wiener_extrapolation_1964}. If the noise is unknown or not stationary, a different approach is needed. One common strategy used is to place two headphones on a headset, one microphone on the mouthpiece that picks up both the voice and noise, and one microphone far from the mouth which captures primarily noise.
+
+
+\bibliography{refs}
+\bibliographystyle{IEEEtran}
+\end{document}
