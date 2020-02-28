@@ -26,4 +26,14 @@ N.~Wiener, \emph{Extrapolation, {{Interpolation}}, and {{Smoothing}} of
   {{Stationary Time Series}}}.\hskip 1em plus 0.5em minus 0.4em\relax {The MIT
   Press}, 1964.
 
+\bibitem{diniz_adaptive_2020}
+P.~S.~R. Diniz, \emph{\BIBforeignlanguage{en}{Adaptive Filtering {{Algorithms}}
+  and {{Practical Implementation}}}}, 2020, oCLC: 1129184597.
+
+\bibitem{adali_steady-state_1999}
+T.~Adali and S.~H. Ardalan, ``\BIBforeignlanguage{eng}{On steady-state
+  performance of the fixed-point {{RLS}} algorithm},''
+  \emph{\BIBforeignlanguage{eng}{Computers and Electrical Engineering}},
+  vol.~25, no.~1, pp. 1--16, 1999.
+
 \end{thebibliography}

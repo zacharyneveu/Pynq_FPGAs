@@ -5,12 +5,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Geometry, font
-\documentclass[12pt, letter]{article}
+\documentclass[12pt, letter, twocolumn]{article}
 \usepackage[margin=0.8in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{fourier}
 \usepackage{titling}
-\setlength{\droptitle}{-5em} 
+\setlength{\droptitle}{-2em} 
 \usepackage[parfill]{parskip}
 \usepackage{graphicx}
 \graphicspath{{imgs/}}
@@ -27,29 +27,69 @@
 
 %drafty stuff
 \usepackage{todonotes}
+\usepackage{adjustbox}
+
 
 % Code Highlighting
 \usepackage{minted}
 \usemintedstyle{solarizedlight}
 
+% fancy tables
+\usepackage{booktabs}
+
+
 \author{Zach Neveu}
-\title{  }
+\title{ Proposal: LMS and RLS Adaptive Filtering on Pynq}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-\noindent This project will implement \ac{LMS} and \ac{RLS} adaptive filters to perform the task of adaptive noise cancellation for a real-time audio input on a Pynq development board. The goal of this work is to determine performance differences between using the \ac{PL} and \ac{PS} for adaptive filtering, and to find a combination of resources and number representation which produces an efficient implementation for large size filters. To compare performance, end-to-end latency and throughput are determined for each implementation and compared.
+\noindent This project will implement \ac{LMS} and \ac{RLS} adaptive filters to perform the task of adaptive noise cancellation for a real-time audio input on a Pynq development board. The goal of this work is to determine performance differences between using the \ac{PL} and \ac{PS} for adaptive filtering, and to find a combination of resources and number representation which produces an efficient implementation for large size filters. To evaluate performance, end-to-end latency and throughput criteria are determined for each implementation.
 \end{abstract}
 
 \subsection*{Advice from Informal Proposal}
+\begin{quote}
 Good project.  What will your sources of input data be?  Can you use any of the interfaces on the PYNQ board to stream data in?
 
 For \ac{LMS} and \ac{RLS} you need to be careful about data representation.  Floating point is expensive to implement in FPGA hardware.
+\end{quote}
 
-\section{Introduction}%
+\section*{Introduction}%
 \label{sec:system}
-Speech communication via telephone, VOIP, and other technologies has become one of the primary ways that people interact. The presence of external noise can have a greatly detrimental effect on the intelligibility and quality of transmitted speech. Unfortunately, it is generally not possible to remove this noise through purely acoustic means, therefore algorithms are needed to reduce the amount of noise present. If the noise is known and stationary (i.e. Gaussian white noise), it can be removed using a simple Wiener filter \cite{wiener_extrapolation_1964}. If the noise is unknown or not stationary, a different approach is needed. One common strategy used is to place two headphones on a headset, one microphone on the mouthpiece that picks up both the voice and noise, and one microphone far from the mouth which captures primarily noise.
+Speech communication via telephone, VOIP, and other technologies has become one of the primary ways that people interact. The presence of external noise can have a greatly detrimental effect on the intelligibility and quality of transmitted speech. Unfortunately, it is generally not possible to remove this noise through purely acoustic means, therefore algorithms are needed to reduce the amount of noise present. If the noise is known and stationary (i.e. Gaussian white noise), it can be removed using a simple Wiener filter \cite{wiener_extrapolation_1964}. If the noise is unknown or not stationary, a different approach is needed. One common strategy used is to place two headphones on a headset, one microphone on the mouthpiece that picks up both the voice and noise, and one microphone far from the mouth which captures primarily noise. In this scenario, the noise picked up in isolation is generally a linear transformation of the noise mixed with the speech at the other microphone, and by learning this linear transformation, the noise can be removed. 
+
+\section*{Design}%
+\label{sec:design}
+\subsection*{Inputs and Outputs}
+The implemented designs will make use of the audio inputs and outputs of the Pynq development board. The line input provides two channels of input. The left channel will represent a mix of signal and noise, while the right channel will carry only noise. For testing and development, synthetic data will be passed from a host computer to the line input via an aux cable. In practice, two microphones could be connected to this line input for a real-world demonstration. The headphone output includes two channels, so the single channel output of the algorithms will be duplicated across both channels.
+
+
+\subsection*{Algorithms}
+\ac{LMS} and \ac{RLS} are two adaptive filtering algorithms which can utilize a two microphone technique to remove noise \cite{diniz_adaptive_2020}. Both algorithms use a \ac{FIR} filter to estimate the linear system between the two inputs. \ac{LMS} minimizes a \ac{MSE} cost function using gradient descent, and under steady-state conditions converges to the results of a Wiener filter. \ac{RLS} is based on minimizing an exponentially-weighted squared-error cost function with the idea that in a non-stationary environment more recent errors should be weighted more heavily. Because of this optimization, \ac{RLS} can converge faster than \ac{LMS}, but incurs a higher computational cost. One key difference between the two techniques for the context of this work is that using \ac{RLS}, each estimate relies on previous estimates in a recursive manner. When using fixed-point number systems, quantization errors can accumulate in the recursive formulation causing potential instability \cite{adali_steady-state_1999}.
+
+\section*{Plan} 
+I plan to divide the work on this project into 4 key stages as shown in \ref{tab:stages}. The first stage will be to get versions of both algorithms running on the \ac{PS} in Python. I have done this stage before for these two algorithms, so the key here will be to only use the libraries present on the Pynq board. Stage 2 will be to get working versions of both algorithms on the \ac{PL}. This stage could be divided into first performing filtering on the PL similar to the FIR lab, then performing weight updates on the PL as well. Stage 3 will be to optimize designs for the \ac{PL}, including changing data formats, utilizing pipelining and parallelization. This stage can take as much time as is available as there are many different combinations and architectures to try. Finally, stage 4 will involve analyzing the trade-offs between designs, aggregating data, and reporting results.
+
+\begin{table}[h]
+	\centering
+	\caption{Work Timeline}
+	\label{tab:stages}
+	\begin{adjustbox}{width=0.5\textwidth}
+	\begin{tabular}{llr}
+	\toprule
+	Stage & Work to Do & Due Date \\
+	\midrule
+	1 & \ac{LMS} \& \ac{RLS} in Python & Feb. $19$ \\
+	2 & Basic PL designs of \ac{LMS} \& \ac{RLS} & Feb. $26$ \\
+	3 & Optimized designs \& profiling & Mar. $4$ \\
+	4 & Analysis and report & Mar. $11$ \\
+	\end{tabular}
+	\end{adjustbox}
+\end{table}
+
+\section*{Evaluation}
+Both \ac{LMS} and \ac{RLS} algorithms produce a scalar error for each sample. By analyzing these errors, the time needed for convergence, as well as the error of the converged algorithm can be determined. Input signals will be synthetic, so identical inputs can be replicated for both hardware and software designs. A correct hardware implementation will have convergence properties and errors very similar to the reference software implementation. In order to benchmark different designs, the criteria used will be input-to-output latency and system throughput. Latency can be measured by Vivado for hardware designs, and can be timed for both software and hardware implementations. Throughput can also be estimated via timing with large input arrays, or can be calculated analytically for hardware designs. A successful design will maximize the amount of throughput and minimize latency while still fitting within the hardware resources of the Pynq development board.
 
 
 \bibliography{refs}
