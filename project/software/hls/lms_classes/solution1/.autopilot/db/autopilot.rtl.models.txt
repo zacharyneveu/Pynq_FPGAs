@@ -1,0 +1,4 @@
+lms_faddfsub_32ns_32ns_32_5_full_dsp_1
+lms_fmul_32ns_32ns_32_4_max_dsp_1
+lms_lms_sr
+lms

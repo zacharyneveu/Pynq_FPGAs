@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="datatypes.h" path="C:\Users\neveu.z\Documents\lms_classes\datatypes.h"/>
+    <originFiles name="lms.cpp" path="C:\Users\neveu.z\Documents\lms_classes\lms.cpp"/>
+    <originFiles name="lms_class.h" path="C:\Users\neveu.z\Documents\lms_classes\lms_class.h"/>
+  </source>
+  <testbench>
+    <originFiles name="lms_test.cpp" path="C:\Users\neveu.z\Documents\lms_classes\lms_test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

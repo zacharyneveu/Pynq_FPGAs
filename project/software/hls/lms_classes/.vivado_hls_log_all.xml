@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T17:06:38.169-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T17:06:20.658-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:33:59.132-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: nonzero return value." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:19:59.476-0500"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '1'." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:19:59.467-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:19:39.695-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: nonzero return value." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:16:25.572-0500"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '1'." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:16:25.565-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:10:49.971-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: nonzero return value." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:02:20.850-0500"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '1'." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:02:20.842-0500"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:02:01.683-0500"/>
+      </csimLog>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Setting dangling out port 'lms/ap_return' to 0." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:01:50.299-0500" type="Warning"/>
+        <logs message="WARNING: [SYNCHK 200-77] The top function 'lms' (lms_classes/lms.cpp:5) has no outputs. Possible cause(s) are: (1) Output parameters are passed by value; (2) intended outputs (parameters or global variables) are never written; (3) there are infinite loops." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:01:49.975-0500" type="Warning"/>
+        <logs message="WARNING: [SYNCHK 200-78] Function 'lms' (lms_classes/lms.cpp:5) has undefined return value (possible cause(s): an uninitialized variable is used in the computation of return result)." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:01:49.971-0500" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] In file included from lms_classes/lms.cpp:1:&#xA;In file included from lms_classes/lms.cpp:1:&#xA;lms_classes/lms_class.h:31:1: warning: control reaches end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;lms_classes/lms.cpp:8:16: note: in instantiation of member function 'LMS&lt;50>::process' requested here&#xA;    return lms.process(x, y, mu);&#xA;               ^&#xA;1 warning generated." projectName="lms_classes" solutionName="solution1" date="2020-02-28T16:01:49.163-0500" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
